@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(1200px 600px at 80% -10%, rgba(62, 207, 142, 0.08), transparent),
+    radial-gradient(900px 500px at -10% 20%, rgba(224, 164, 88, 0.06), transparent), #0b0f14;
+}
+
+.card {
+  @apply bg-panel border border-line rounded-xl2 p-6;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full bg-mint text-ink font-semibold px-6 py-3
+    transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98];
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center rounded-full border border-line text-cloud font-medium px-6 py-3
+    transition-colors duration-150 hover:border-mint hover:text-mint;
+}
+
+.label-tag {
+  @apply text-xs tracking-[0.2em] uppercase text-mute font-mono;
+}
+
+.stat-number {
+  @apply font-display text-4xl md:text-5xl font-semibold text-cloud;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Product UI polish */
+@layer components {
+  .status-pill {
+    @apply inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium capitalize border;
+  }
+  .status-success { @apply border-mint/30 bg-mint/10 text-mint; }
+  .status-warning { @apply border-amber/30 bg-amber/10 text-amber; }
+  .status-danger { @apply border-red-400/30 bg-red-400/10 text-red-300; }
+  .status-neutral { @apply border-line bg-panel text-mute; }
+
+  input, select, textarea {
+    @apply transition-colors duration-150;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    @apply outline-none border-mint ring-1 ring-mint/20;
+  }
+
+  button:disabled {
+    @apply cursor-not-allowed opacity-60;
+  }
+}
+
+::selection {
+  background: rgba(62, 207, 142, 0.25);
+  color: #f4f7f5;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full border border-line bg-ink px-2.5 py-1 text-xs text-mute;
+}
+
+.status-badge {
+  @apply inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium capitalize;
+}
+
+.status-success {
+  @apply border-mint/30 bg-mint/10 text-mint;
+}
+
+.status-warning {
+  @apply border-amber/30 bg-amber/10 text-amber;
+}
+
+.status-danger {
+  @apply border-red-400/30 bg-red-400/10 text-red-300;
+}
+
+.status-neutral {
+  @apply border-line bg-panel text-mute;
+}
+
+.input-field {
+  @apply w-full rounded-xl border border-line bg-ink px-4 py-3 text-sm text-cloud outline-none transition-colors placeholder:text-mute focus:border-mint;
+}
+
+.select-field {
+  @apply rounded-xl border border-line bg-ink px-4 py-3 text-sm text-cloud outline-none focus:border-mint;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full border border-line bg-ink px-2.5 py-1 text-xs text-mute;
+}
+
+.status-badge {
+  @apply inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium capitalize;
+}
+
+.input-field {
+  @apply w-full rounded-xl border border-line bg-ink px-4 py-3 text-sm text-cloud outline-none transition-colors placeholder:text-mute;
+}
+
+.select-field {
+  @apply rounded-xl border border-line bg-ink px-4 py-3 text-sm text-cloud outline-none;
+}
