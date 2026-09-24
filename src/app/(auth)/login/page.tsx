@@ -15,21 +15,45 @@ function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  function validateEmail(email: string) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    setLoading(true);
     setError(null);
+
+    const trimmedEmail = email.trim();
+
+    // Validate email before sending login request
+    if (!trimmedEmail) {
+      setError("Please enter your email address.");
+      return;
+    }
+
+    if (!validateEmail(trimmedEmail)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if (!password) {
+      setError("Please enter your password.");
+      return;
+    }
+
+    setLoading(true);
 
     const { error: signInError } =
       await supabase.auth.signInWithPassword({
-        email,
+        email: trimmedEmail,
         password,
       });
 
     if (signInError) {
-      setError(signInError.message);
-      setLoading(false);
+      setError("Invalid email or password")
+      setLoading(false)
       return;
     }
 
@@ -57,7 +81,13 @@ function LoginForm() {
             required
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setError(null);
+            }}
+            placeholder="you@example.com"
+            autoComplete="email"
+            inputMode="email"
             className="w-full bg-panel border border-line rounded-lg px-4 py-3 focus:outline-none focus:border-mint"
           />
         </div>
@@ -71,7 +101,12 @@ function LoginForm() {
             required
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setError(null);
+            }}
+            placeholder="Enter your password"
+            autoComplete="current-password"
             className="w-full bg-panel border border-line rounded-lg px-4 py-3 focus:outline-none focus:border-mint"
           />
         </div>
