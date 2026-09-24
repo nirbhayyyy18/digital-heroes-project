@@ -11,7 +11,7 @@ The project also includes a dedicated admin panel for managing users, subscripti
 ## Live Application
 
 **Live Website:**  
-https://digital-heroes-project-muv.vercel.app/
+https://digital-heroes-project-mu.vercel.app/
 
 **GitHub Repository:**  
 https://github.com/nirbhayyyy18/digital-heroes-project
